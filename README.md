@@ -125,7 +125,7 @@ AI_LearnSphere/
 ### 1. Clone the Repository
 
 ```bash
-git clone YOUR_GITHUB_REPOSITORY_URL
+git clone https://github.com/suman-126/AI-LearnSphere.git
 ```
 
 ### 2. Navigate to the Project Directory
@@ -185,6 +185,6 @@ The current automated test suite contains 10 tests, all of which passed during p
 
 ## Author
 
-**Sana**
+**Suman**
 
 Passionate about exploring Artificial Intelligence and building practical AI-powered applications. Interested in Generative AI, intelligent systems, and innovative learning technologies.
