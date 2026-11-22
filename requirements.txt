@@ -1,0 +1,14 @@
+
+streamlit
+python-dotenv
+pandas
+plotly
+pymupdf
+python-docx
+langchain-text-splitters
+fastembed
+rank-bm25
+flashrank
+chromadb
+requests
+pytest

@@ -1,0 +1,14 @@
+Python Variables
+
+A variable in Python is a named reference used to store a value.
+
+Variables allow programmers to store and access data throughout a program.
+
+Python does not require explicit variable declarations.
+A variable is created when a value is assigned to it.
+
+Example:
+name = "Sana"
+age = 20
+
+Here, name stores a string value and age stores an integer value.

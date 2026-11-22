@@ -1,0 +1,29 @@
+
+# Virtual environment
+myenv/
+.venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Environment variables and secrets
+.env
+.env.*
+
+# Local databases and learning data
+database/*.db
+data/*.db
+data/user_settings.json
+data/uploads/*
+data/generated/*
+document_store/*
+vectorstore/
+
+# Model and application caches
+.cache/
+*.log
+model_cache/
+
+# IDE settings
+.vscode/
