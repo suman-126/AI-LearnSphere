@@ -1,4 +1,3 @@
-
 streamlit
 python-dotenv
 pandas
@@ -12,3 +11,4 @@ flashrank
 chromadb
 requests
 pytest
+langgraph==1.2.24

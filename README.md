@@ -2,7 +2,7 @@
 
 AI LearnSphere is an AI-powered learning platform designed to make education more interactive, personalized, and effective. It provides an integrated environment where learners can explore academic subjects, understand concepts, evaluate their knowledge, practice skills, and track their learning progress.
 
-The platform combines Generative AI, Retrieval-Augmented Generation (RAG), document intelligence, and personalized learning features to support an engaging learning experience.
+The platform combines Generative AI, Retrieval-Augmented Generation (RAG), document intelligence, LangGraph workflow orchestration, and personalized learning features to support an engaging learning experience.
 
 ## Key Features
 
@@ -26,7 +26,8 @@ The platform combines Generative AI, Retrieval-Augmented Generation (RAG), docum
 - Extract and process document content.
 - Ask questions about uploaded documents.
 - Retrieve relevant information with source references.
-- Use document-based question answering through RAG.
+- Use hybrid retrieval and reranking for document-based question answering.
+- Use LangGraph to orchestrate the document question-answering workflow.
 
 ### 5. Practice Arena
 - Practice multiple-choice questions.
@@ -68,6 +69,7 @@ The platform combines Generative AI, Retrieval-Augmented Generation (RAG), docum
 |---|---|
 | Programming Language | Python |
 | User Interface | Streamlit |
+| Workflow Orchestration | LangGraph |
 | Data Processing | Pandas |
 | Database | SQLite |
 | Vector Database | ChromaDB |
@@ -76,6 +78,7 @@ The platform combines Generative AI, Retrieval-Augmented Generation (RAG), docum
 | Reranking | FlashRank |
 | RAG | Retrieval-Augmented Generation |
 | Document Processing | PyMuPDF, python-docx |
+| AI Model Runtime | Ollama |
 | Visualization | Plotly |
 | Environment Configuration | python-dotenv |
 | Testing | Pytest |
@@ -91,6 +94,70 @@ AI LearnSphere integrates multiple AI and information retrieval techniques:
 - **Hybrid Retrieval:** Combines semantic and keyword-based retrieval.
 - **Reciprocal Rank Fusion (RRF):** Combines rankings from multiple retrieval methods.
 - **FlashRank Reranking:** Reorders retrieved results based on relevance.
+- **LangGraph:** Orchestrates the Document Intelligence question-answering workflow using a structured graph with conditional routing.
+
+### LangGraph Integration – Document Question Answering
+
+LangGraph is integrated into the Document Intelligence module to manage the document question-answering workflow.
+
+The workflow includes:
+
+1. **Validation:** Validates the user's question, selected documents, and retrieval settings.
+2. **Question Classification:** Identifies whether the question requires original code extraction or normal document-based retrieval.
+3. **Conditional Routing:**
+   - Code-related questions follow the code extraction path.
+   - Normal questions follow the document retrieval path.
+4. **Hybrid Retrieval and Reranking:** Retrieves relevant document chunks using the existing retrieval and reranking services.
+5. **Context Preparation:** Prepares relevant information and source references.
+6. **Answer Generation:** Uses the existing Ollama-based response generation service to generate a document-grounded answer.
+7. **Result Return:** Returns the answer and source references to the Streamlit interface.
+
+The integration uses LangGraph for workflow orchestration while preserving the existing document processing, retrieval, reranking, and answer-generation components.
+
+### LangGraph Workflow Overview
+
+```text
+Streamlit Interface
+        |
+        v
+Document QA Wrapper
+(document_qa.py)
+        |
+        v
+LangGraph Workflow
+(document_qa_graph.py)
+        |
+        v
+Validate Documents and Question
+        |
+        v
+Classify Question
+        |
+        +-----------------------+
+        |                       |
+        v                       v
+  Code Question          Normal Question
+        |                       |
+        v                       v
+  Extract Original       Hybrid Retrieval
+  Code Examples          and Reranking
+        |                       |
+        +-----------+-----------+
+                    |
+                    v
+           Prepare Context
+           and Source References
+                    |
+                    v
+           Generate Answer
+               (Ollama)
+                    |
+                    v
+           Return Final Result
+                    |
+                    v
+             Streamlit UI
+```
 
 ## Project Structure
 
@@ -121,6 +188,7 @@ AI_LearnSphere/
 - Python 3.10 or later
 - pip
 - Git (optional, for cloning the repository)
+- Ollama with a compatible local model for AI-powered features
 
 ### 1. Clone the Repository
 
@@ -181,7 +249,6 @@ The current automated test suite contains 10 tests, all of which passed during p
 - Enhance document understanding and retrieval capabilities.
 - Introduce additional learning analytics and evaluation methods.
 - Extend support for more programming languages and coding exercises.
-
 
 ## Author
 
